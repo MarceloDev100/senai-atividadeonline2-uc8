@@ -1,0 +1,183 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+
+.container{
+    margin-bottom: 50px;
+}
+
+#speakersBlock, #eventsBlock, #participantsBlock{ 
+    border: 1px solid black;
+    padding: 20px;
+    box-shadow: 2px 1px 1px rgba(0,0,0, 0.5);
+    margin-top: 50px;
+}
+
+#button-speaker{
+    margin: 3px 3px;
+}
+
+.totalParticipants{
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+
+h1, h2{
+    margin-bottom: 30px;
+}
+
+
+.card{
+    animation-duration: 1s;
+    -moz-animation-duration: 1s;
+    -webkit-animation-duration: 1s;
+    -o-animation-duration: 1s;
+
+    animation-name: slide-in;
+    -moz-animation-name: slide-in;
+    -webkit-animation-name: slide-in;
+    -o-animation-name: slide-in;
+
+    animation-timing-function: cubic-bezier(0.1, -0.6, 0.2, 0);
+    -moz-animation-timing-function:  cubic-bezier(0.1, -0.6, 0.2, 0);
+    -webkit-animation-timing-function:  cubic-bezier(0.1, -0.6, 0.2, 0);
+    -o-animation-timing-function:  cubic-bezier(0.1, -0.6, 0.2, 0);
+}
+
+
+.nav-item a{
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.nav-item a:hover{
+    color: lime;
+    text-shadow: 1px 1px rgba(0 ,0, 0, 0.5);
+}
+
+.lightSteelBlueColor{
+    background-color: lightsteelblue;
+}
+
+#eventsBlock, #speakersBlock, #participantsBlock, #listBlock{
+    animation: fadein 4s;
+    -webkit-animation: fadein 4s; 
+    -moz-animation: fadein 4s;
+     -ms-animation: fadein 4s; 
+      -o-animation: fadein 4s;
+    
+}
+
+
+.table{
+    display: block;
+    position: relative;
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid black;
+    box-shadow: 2px 1px 1px solid;
+    min-width: 540px;
+  }
+
+ 
+.table tr:nth-child(even){
+    background: #C0C0C0	;
+}
+
+
+.table th, .table td{
+    flex: 1 1 300px;
+    width: 20%;
+    padding: 5px;
+} 
+
+.table .p{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    
+}
+
+.table .p td{
+    flex: 1 1 500px;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 2px;
+}
+
+.people-item{
+    border: none;
+}
+
+
+input[type='text'], #event-speaker, #event-name-select{
+    width: 600px;
+}
+
+
+@keyframes slide-in {
+    from{
+        margin-left: 30%;
+        width: 200%;
+    }
+
+    to{
+        margin-left: 0%;
+        width: 100%;
+    }
+}
+
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+
+@-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+
+@-ms-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@-o-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+
+@media (max-width: 770px) {
+     input[type="text"]{
+         width: 350px
+     } 
+     
+     #event-speaker, #event-name-select{
+         width: 350px;
+     }
+}
+
+
+@media (max-width: 500px) {
+    .nav{
+        display: flexbox;
+        flex-direction: column;
+        justify-content: center;
+        width: 600px;
+    }
+} 

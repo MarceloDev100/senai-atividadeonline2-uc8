@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" rel="stylesheet" integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+        <link rel="stylesheet" href="static/style.css">
+        <link rel="icon" type="image/png" sizes="16x16"  href="/img/globe.png">
+        <title>Savinis</title>
+    </head>
+    <body>
+
+        <nav class="navbar navbar-light bg-light">
+            <div class="container-fluid  lightSteelBlueColor">
+                <a class="navbar-brand" href="#">
+                    <img src="./img/savinis.png" width="120" height="75" class="d-inline-block align-text-top">
+                    <p class="title">Desenvolvimento de Software</p>
+                </a>
+
+                <ul class="nav justify-content-end">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" id="speaker-nav">Cadastrar Palestrante</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" id="event-nav">Cadastrar Evento</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" id="participant-nav">Cadastrar Participante</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" id="list-nav">Listar Eventos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" id="clearAll-nav">Limpar tudo</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div id="speakersBlock">
+                <h1>Cadastro de palestrantes</h1>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Nome do palestrante</label>
+                            <input type="text" class="form-control" id="speaker" placeholder="nome completo" maxlength="50">
+                            <div id="speakers-alert"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="mb-3">
+                            <button type="button" class="btn btn-primary" id="button-speaker">Cadastrar</button>
+                            <button type="button" class="btn btn-primary" id="button-forward">Avançar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="eventsBlock" style="display: none;">
+                <h1>Cadastro de eventos</h1>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="event-name" class="form-label">Insira o evento</label>
+                            <input type="text" class="form-control" id="event" maxlength="50">
+                            <div id="event-name-alert"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="event-date" class="form-label">Data do evento</label>
+                            <input type="text" class="form-control" id="event-date">
+                            <div id="event-date-alert"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="event-speaker" class="form-label">Selecione o palestrante</label>
+                            <select id="event-speaker" class="form-control form-select"></select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <div id="event-finalize-alert"></div>
+                            <button type="button" class="btn btn-primary" id="button-finalize-event">Finalizar cadastro</button>
+                            <button type="button" class="btn btn-primary" id="button-return">Voltar</button>
+                            <button type="button" class="btn btn-primary" id="button-go-ahead">Avançar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="participantsBlock" style="display: none;">
+                <h1>Cadastro de participantes</h1>
+            
+                <div class="totalParticipants">
+                    <div class="row" id="total">
+                        <div class="col-md-8">
+                            <h4>Total de participantes
+                                <span class="badge bg-secondary"></span>
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" id="message-alert" style="display: none">
+                    <div class="col-md-12">
+                        <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+                            <div class="card-header">Cadastro não permitido</div>
+                            <div class="card-body">
+                                <h5 class="card-title">Limite excedido</h5>
+                                <p class="card-text">Cadastro não será permitido por ter excedido o limite de participantes!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Nome do participante</label>
+                            <input type="text" class="form-control" id="name-participant" placeholder="nome completo" maxlength="40">
+                            <div id="name-alert"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="mb-3">
+                            <label for="birth" class="form-label">Data de nascimento</label>
+                            <input type="text" class="form-control" id="birth">
+                            <div id="birth-alert"></div>
+                            <div id="age-alert"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="mb-3">
+                            <label for="event-name" class="form-label">Selecione o evento</label>
+                            <select id="event-name-select" class="form-control form-select"></select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <button type="button" class="btn btn-primary btn-large" id="button-submit-participant">Enviar</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="listBlock" style="display: none;">
+                <div class="container-fluid" id="list">
+                    <h1>Participantes e palestrantes por evento</h1>
+                </div>
+
+                <!-- Toast -->
+                <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+                    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="toast-header">
+                            <img src="./img/thumb_up.png" class="rounded me-2" alt="thumb up" height="32px" width="32px">
+                            <strong class="me-auto">Participante cadastrado</strong>
+                            <small>Agora</small>
+                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                        <div class="toast-body">
+                            Participante salvo com sucesso!
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+            <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+            <script src="https://kit.fontawesome.com/3be6f51c8f.js" crossorigin="anonymous"></script>
+
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+            <script src="static/script.js"></script>
+        </body>
+    </body>
+</html>
